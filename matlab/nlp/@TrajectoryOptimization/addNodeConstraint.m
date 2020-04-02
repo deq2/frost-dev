@@ -68,6 +68,8 @@ function obj = addNodeConstraint(obj, func, deps, nodes, lb, ub, type, auxdata)
                 node_list = 1:2:nNode;
             case 'interior'
                 node_list = 2:2:nNode-1;
+            case 'middle'
+                node_list = round(nNode/2);
             otherwise
                 error('Unknown node type.');
         end

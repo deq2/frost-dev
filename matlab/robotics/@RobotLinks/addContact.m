@@ -58,8 +58,7 @@ function obj = addContact(obj, contact, fric_coef, geometry, load_path)
         % compute the body jacobian
         jac_pos = jacobian(pos,obj.States.x); % directly use partial derivatives for position
         jac_rot = getBodyJacobian(obj, contact);
-        %         jac = [jac_pos;jac_rot(4:6,:)];
-        jac = jac_rot;
+        jac = [jac_pos;jac_rot(4:6,:)];
         % extract the contrained elements
         constr_jac = contact.WrenchBase' * jac;
         
@@ -83,6 +82,8 @@ function obj = addContact(obj, contact, fric_coef, geometry, load_path)
         % label for the holonomic constraint
         label_full = cellfun(@(x)[contact.Name,x],...
             {'PosX','PosY','PosZ','Roll','Pitch','Yaw'},'UniformOutput',false);
+%         label_full = cellfun(@(x)[contact.Name,x],...
+%             {'PosY','PosZ','Roll','Yaw'},'UniformOutput',false);
         for i=size(contact.WrenchBase,2):-1:1
             label{i} = label_full{find(contact.WrenchBase(:,i))};         %#ok<FNDSB>
         end

@@ -88,7 +88,6 @@ end
         C   = zeros(constraint.Dimension,1);
         for i = 1:constraint.numFuncs
             var = cellfun(@(v)x(v(:)),constraint.DepIndices{i},'UniformOutput',false); % dependent variables
-            
             % calculate constraints
             if isempty(constraint.AuxData{i})
                 C(constraint.FuncIndices{i}) = C(constraint.FuncIndices{i}) + feval(constraint.Funcs{i}, var{:});

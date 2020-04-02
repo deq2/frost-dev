@@ -93,6 +93,7 @@ function func_struct = array2struct(obj, func_array, type, derivative_level)
     deps_array = vertcat(deps_array_cell{:});
     n_deps = length(deps_array);
     for i=1:n_deps
+        disp(i)
         if isempty(deps_array(i).JacPattern)
             js = feval(deps_array(i).Funcs.JacStruct,0);
             if ~isempty(js)

@@ -21,9 +21,6 @@ function obj = setMassMatrix(obj, M)
             M = SymExpression(M);
             obj.Mmat = SymFunction(mmat_name,M,{x});
         end
-        assert((length(obj.Mmat.Vars)==1 && obj.Mmat.Vars{1} == x) || isempty(obj.Mmat.Vars),...
-                'The SymFunction (M) must be a function of only states (x).');
-        
         
         if strcmp(obj.Type,'SecondOrder') 
             ddx = obj.States.ddx;

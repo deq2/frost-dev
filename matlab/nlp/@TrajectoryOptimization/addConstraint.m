@@ -37,6 +37,8 @@ function obj = addConstraint(obj, label, nodes, cstr_array)
                 node_list = 2:obj.NumNode-1;
             case 'all'
                 node_list = 1:obj.NumNode;
+            case 'middle'
+                node_list = round(obj.NumNode/2);
             case 'cardinal'
                 node_list = 1:2:obj.NumNode;
             case 'interior'
